@@ -1,11 +1,20 @@
-FROM mcr.microsoft.com/playwright:v1.56.1-jammy
+# Use Playwright base image (Chromium included)
+FROM mcr.microsoft.com/playwright:v1.58.2-jammy
 
+# Set working directory
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
 
+# Copy package files first (better cache)
+COPY package.json package-lock.json* ./
+
+# Install dependencies
+RUN npm install --omit=dev
+
+# Copy rest of the app
 COPY . .
-ENV PORT=3000
+
+# Expose port (Railway/Fly/Render use this)
 EXPOSE 3000
 
+# Start server
 CMD ["npm", "start"]
