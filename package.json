@@ -1,0 +1,14 @@
+{
+  "name": "tiktok-site",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "server.cjs",
+  "scripts": {
+    "start": "node server.cjs"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.1",
+    "playwright": "^1.58.2"
+  }
+}
